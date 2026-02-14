@@ -1,42 +1,55 @@
 # Delizia B2B Distribution
 
-## Project Overview
-Delizia B2B Distribution is a robust platform designed to streamline business-to-business distribution processes. It provides businesses with the tools needed to manage orders, track inventory, and enhance customer relationships.
+Delizia B2B Distribution is a starter backend API for managing users, products, orders, and product catalog exports.
 
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/speedarabic07-art/delizia-b2b-distribution.git
-   ```
-2. Navigate into the project directory:
-   ```bash
-   cd delizia-b2b-distribution
-   ```
-3. Install the necessary dependencies:
+## Quick Start
+
+1. Install dependencies:
    ```bash
    npm install
    ```
-4. Start the development server:
+2. Run the API server:
    ```bash
    npm start
    ```
-
-## Technology Stack
-- **Frontend:** React, Redux
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **Deployment:** Docker, AWS
-
-## Deployment Guide
-1. Ensure Docker is installed on your machine.
-2. Build the Docker image:
-   ```bash
-   docker build -t delizia-b2b-distribution .
+3. Open health check:
    ```
-3. Run the Docker container:
-   ```bash
-   docker run -p 3000:3000 delizia-b2b-distribution
+   http://localhost:3000/api/health
    ```
-4. Access the application at `http://localhost:3000`.
 
-For any issues or contributions, please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) file or create an issue on GitHub.
+## Available Scripts
+
+- `npm start` - run server on port `3000` (or `PORT` env variable).
+- `npm run dev` - run in watch mode.
+- `npm test` - syntax check for server file.
+
+## Environment Variables
+
+- `PORT` (optional): default `3000`
+- `JWT_SECRET` (optional): default `dev-secret-change-me`
+
+## Core Endpoints
+
+### Auth
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
+### Products (requires Bearer token)
+- `GET /api/products`
+- `POST /api/products`
+- `PUT /api/products/:id`
+- `DELETE /api/products/:id`
+
+### Orders (requires Bearer token)
+- `GET /api/orders`
+- `POST /api/orders`
+- `PUT /api/orders/:id`
+
+### Catalog (requires Bearer token)
+- `GET /api/catalog.pdf`
+
+## Notes
+
+- Current implementation uses **in-memory storage** for MVP speed.
+- Data is reset whenever the server restarts.
+- MongoDB integration can be added next as a phase-2 step.
